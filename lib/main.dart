@@ -1,6 +1,6 @@
 import 'dart:isolate';
+
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
@@ -44,11 +44,11 @@ class HomePageState extends State<HomePage> {
 
   Future<void> _initializeIsolate() async {
     final isolate = await Isolate.spawn(runInIsolate, _receivePort.sendPort);
-    _receivePort.listen((message) {
-      if (message is SendPort) {
-        _sendPort = message;
-      }
-    });
+    // _receivePort.listen((message) {
+    //   if (message is SendPort) {
+    //     _sendPort = message;
+    //   }
+    // });
     _sendPort = await _receivePort.first;
   }
 
